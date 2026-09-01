@@ -1,4 +1,4 @@
-*{
+* {
     box-sizing: border-box;
 }
 
@@ -12,7 +12,32 @@ body {
 
 .site-header {
     background-color: #ffffff;
-    padding: 20px;
     text-align: center;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 24px;
+    
 }
+
+.page{
+    max-width: 900px;
+    margin: 24px auto;
+    padding: 0 16px;
+    display: flex;
+    gap: 16px;
+}
+
+.content, 
+.sidebar {
+    background: white;
+    border: 1px solid #ddd;
+    padding: 16px;
+    border-radius: 8px;
+}
+.sidebar {
+    flex: 1;
+}
+
+.content {
+    flex: 2;
+}
+
