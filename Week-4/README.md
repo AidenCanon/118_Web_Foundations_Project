@@ -1,0 +1,3 @@
+# Task is to create a Task/ To do list
+## What do i have at this stage?
+At the beginning of week 4 i have my Style page along with i just started diving into JavaScript and created my first script.js and on this it is essentially a grade checker i took and inputted some constants and it worked splendid at first though i made the mistake of having the js file in the wrong folder.  Anyway i started out by having my two constants and addition of the two then i ended up adding the if and else statement for the grade checker portion and with that i tested different numbers and it works as intended.
