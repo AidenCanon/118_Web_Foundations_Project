@@ -56,6 +56,9 @@ body {
     text-decoration: none;
     color: var(--primary-color);
 }
+.site-nav a:hover {
+    background-color: var(--third-background);
+}
 
 .page{
     max-width: 900px;
@@ -93,4 +96,16 @@ body {
     .card-grid {
         grid-template-columns: 1fr;
     }
+}
+button {
+    background-color: var(--secondary-background);
+    color: var(--primary-color);
+    border: none;
+    padding: 8px 16px;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-weight: 700;
+}
+button:hover {
+    background-color: var(--third-background);
 }

@@ -26,3 +26,9 @@ function changeGoal() {
 }
 
 changeGoalButton.addEventListener("click", changeGoal);
+
+const resetGoalButton = document.getElementById("resetGoal");
+function resetGoal() {
+    goalParagraph.textContent = "This page will allow users to input to there task/ todo list but to see the actual list they will have to go to the Task/ To Do page.";
+}
+resetGoalButton.addEventListener("click", resetGoal);
