@@ -1,0 +1,2 @@
+In two of my const i ended up misspelling causing it not to work along with a missing = sign in one of the functions causing it not to output anything.  How did i fix it well i went and did it the manual way using console log to see what was being called on to figure out what was or could be working.
+In the end after all of the grammar errors and forgetting the equal sign i figured it out by checking the code line by line and also using the console log to check if it was even making it into the function after everything was fixed it now does all work as intended.
