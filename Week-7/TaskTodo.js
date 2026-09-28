@@ -1,60 +1,68 @@
+// const tasks = [];
+
+// const input = document.querySelector('#task-input');
+// const submit = document.querySelector('#Submit');
+// const list = document.querySelector('#task-list');
+
+// submit.addEventListener('click', () => {
+//     const task = input.value.trim();
+//     if (!task) return;
+
+//     const listItem = document.createElement('li');
+//     listItem.textContent = task;
+
+//     const removeButton = document.createElement('button');
+//     removeButton.textContent = 'Remove';
+//     removeButton.addEventListener('click', () => {
+//         list.removeChild(listItem);
+//         const index = tasks.indexOf(task);
+//         if (index > -1) {
+//             tasks.splice(index, 1);
+//         }
+//     });
+
+//     listItem.appendChild(removeButton);
+//     list.appendChild(listItem);
+//     tasks.push(task);
+//     input.value = '';
+// });
+
+//  the simplified version is above the original version is in week 6.
+
 const tasks = [];
 
-// Function to create the add task input and list container
-function createAddTaskInput() {
-    const page = document.querySelector('.page');
-    const card = document.createElement('div');
-    card.className = 'card';
-    const input = createInput();
-    const submit = createSubmitButton(input);
-    card.appendChild(input);
-    card.appendChild(submit);
-    page.insertBefore(card, page.firstChild);   
-    
-    const list = document.createElement('ul');
-    list.className = 'task-list';
-    card.appendChild(list);
+const input = document.querySelector('#task-input');
+const submit = document.querySelector('#Submit');
+const list = document.querySelector('#task-list');
+
+submit.addEventListener('click', addTask);
+// Function to add a new task to the list
+function addTask() {
+    const task = input.value.trim();
+    if (!task) return;
+
+    list.appendChild(createTaskItem(task));
+    tasks.push(task);
+    input.value = '';
 }
-// Function to create the input element for adding a new task
-function createInput() {
-    const input = document.createElement('input');
-    input.type = 'text';
-    input.placeholder = 'Enter a new task';
-    return input;
-}
-// Function to create the submit button for adding a new task
-function createSubmitButton(input) {
-    const submit = document.createElement('button');
-    submit.textContent = 'Add';
-    submit.addEventListener('click', () => {
-        const task = input.value;
-        if (task) {
-            tasks.push(task);
-            input.value = '';
-            addTaskToList(task);
-        }
-    });
-    return submit;
-}
-// Function to add a task to the task list
-function addTaskToList(task) {
-    const list = document.querySelector('.task-list');
+// Function to create a task list item with a remove button
+function createTaskItem(task) {
     const listItem = document.createElement('li');
-    listItem.textContent = task;
+    listItem.append(document.createTextNode(`${task} `));
+
     const removeButton = document.createElement('button');
     removeButton.textContent = 'Remove';
-    removeButton.addEventListener('click', () => {
-        list.removeChild(listItem);
-        const index = tasks.indexOf(task);
-        if (index > -1) {
-            tasks.splice(index, 1);
-        }
-    });
+    removeButton.addEventListener('click', () => removeTask(task, listItem));
+
     listItem.appendChild(removeButton);
-    list.appendChild(listItem); 
+    return listItem;
 }
+// Function to remove a task from the list
+function removeTask(task, listItem) {
+    list.removeChild(listItem);
 
-
-
-// Call the function to create the add task input when the script loads
-createAddTaskInput();
+    const index = tasks.indexOf(task);
+    if (index > -1) {
+        tasks.splice(index, 1);
+    }
+}

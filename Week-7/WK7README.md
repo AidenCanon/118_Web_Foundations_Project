@@ -1,0 +1,4 @@
+# Task is to create a Task/ To do list
+## What do i have at this stage?
+In week 7 here i ended up deleting all of my java script code for task to do from week 6 because i did not like it at all truly it was confusing for myself even though i wrote it i took what we learned in class and made the ids in the html and made a simplified version but then stuff became repetitive so i went ahead and asked AI for help even though i would not of needed it i wanted to see what it would suggest just out of curiosity.'
+The AI itself asked me questions and its output i liked a lot so i ended up using its suggestion and applied it into my own code the big thing was functions itself and naming not gonna lie my naming skills are not good. everything after all of the changes from week 6 in simplifying and then changing the code to functions to make it better went well and it all works as intended.
