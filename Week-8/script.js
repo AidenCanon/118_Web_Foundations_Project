@@ -40,4 +40,22 @@ function resetGoal() {
         goalParagraph.textContent = "The Goal Has Been Reset. This page will allow users to input to there task/ todo list but to see the actual list they will have to go to the Task/ To Do page.";
     }, 2000);
 }
+// Ensure that the event listeners are only added if the elements exist
+// In case of problems with finding the elements, the following checks and event listener additions are commented out in case there needed.
+// if (!goalParagraph) {
+//     console.error('Could not find the goal paragraph (#goal).');
+// }
+
+// if (!changeGoalButton) {
+//     console.error('Could not find the change button (#changeGoal).');
+// } else if (goalParagraph) {
+//     changeGoalButton.addEventListener("click", changeGoal);
+// }
+
+// if (!resetGoalButton) {
+//     console.error('Could not find the reset button (#resetGoal).');
+// } else if (goalParagraph) {
+//     resetGoalButton.addEventListener("click", resetGoal);
+// }
+
 resetGoalButton.addEventListener("click", resetGoal);
