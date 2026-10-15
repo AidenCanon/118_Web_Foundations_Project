@@ -34,6 +34,8 @@ const tasks = [];
 const input = document.querySelector('#task-input');
 const submit = document.querySelector('#Submit');
 const list = document.querySelector('#task-list');
+const save = document.querySelector('#Save');
+
 
 submit.addEventListener('click', addTask);
 // Function to add a new task to the list
@@ -49,6 +51,16 @@ function addTask() {
 function createTaskItem(task) {
     const listItem = document.createElement('li');
     listItem.append(document.createTextNode(`${task} `));
+    
+    const editButton = document.createElement('button');
+    editButton.textContent = 'Edit';
+    listItem.appendChild(editButton);
+    editButton.addEventListener('click', () => {
+        const newTask = prompt('Edit task:', task);
+        if (newTask) {
+            editTask(task, newTask);
+        }
+    });
 
     const removeButton = document.createElement('button');
     removeButton.textContent = 'Remove';
@@ -66,3 +78,18 @@ function removeTask(task, listItem) {
         tasks.splice(index, 1);
     }
 }
+function editTask(oldTask, newTask) {
+    const index = tasks.indexOf(oldTask);
+    if (index > -1) {
+        tasks[index] = newTask;
+        const listItem = list.children[index];
+        listItem.firstChild.textContent = `${newTask} `;
+        editButton.addEventListener('click', () => {
+            const newTask = prompt('Edit task:', tasks[index]);
+            if (newTask) {
+                editTask(tasks[index], newTask);
+            }
+        });
+    }
+}
+

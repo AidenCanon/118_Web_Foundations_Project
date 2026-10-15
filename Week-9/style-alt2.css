@@ -1,17 +1,17 @@
 :root {
     --color-primary: #394b41;
-    --color-primary-dark: #68736d;
-    --color-accent: #8ab59e;
+    --color-primary-dark: #2f6f61;
+    --color-accent: #2f6f61;
     --color-highlight: #5a7486;
-    --color-link: #8da8bc;
-    --color-bg: #8da8bc;
-    --color-surface: #8ab59e;
-    --color-muted: #68736d;
-    --color-text: #394b41;
-    --color-border: #5a7486;
-    --color-panel: #68736d;
+    --color-link: #ffffff;
+    --color-bg: #f6f8fb;
+    --color-surface: #ffffff;
+    --color-muted: #5d6878;
+    --color-text: #182230;
+    --color-border: #dbe2ea;
+    --color-panel: #ffffff;
     --radius: 6px;
-    --shadow: 0 2px 8px rgba(57, 75, 65, 0.18);
+    --shadow: 0 2px 8px rgba(24, 34, 48, 0.08);
 }
 * {
     box-sizing: border-box;
@@ -115,4 +115,3 @@ button {
 button:hover {
     background-color: var(--color-accent);
 }
-
