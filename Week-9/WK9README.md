@@ -5,7 +5,8 @@ Along with that i did end up using AI to make the contrast of my site look bette
 
 
 ---
-# Question From A9
+# Question From A9 
+I did not break my code into smaller parts i actually after asking the instructor added a function that was needed for the web site i made it so tasks are editable.  Why i did this was because towards my end goal i would like it to be editable but there still may be changes to come to make it better i am unsure what those are yet.
 
 ---
 ## Instructor Comments
