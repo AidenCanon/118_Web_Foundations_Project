@@ -57,5 +57,22 @@ function resetGoal() {
 // } else if (goalParagraph) {
 //     resetGoalButton.addEventListener("click", resetGoal);
 // }
-
 resetGoalButton.addEventListener("click", resetGoal);
+
+const fetchPostButton = document.getElementById("fetchPost");
+const fetchOutput = document.getElementById("fetchOutput");
+
+fetchPostButton.addEventListener("click", () => {
+    fetchOutput.textContent = "Loading...";
+    fetch('https://jsonplaceholder.typicode.com/posts/1')
+        .then(response => {
+            if (!response.ok) throw new Error('Network response was not ok');
+            return response.json();
+        })
+        .then(json => {
+            fetchOutput.textContent = json.title + " - " + json.body;
+        })
+        .catch(error => {
+            fetchOutput.textContent = "Error fetching post: " + error.message;
+        });
+});
