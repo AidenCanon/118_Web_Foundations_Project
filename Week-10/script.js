@@ -61,18 +61,16 @@ resetGoalButton.addEventListener("click", resetGoal);
 
 const fetchPostButton = document.getElementById("fetchPost");
 const fetchOutput = document.getElementById("fetchOutput");
-
-fetchPostButton.addEventListener("click", () => {
+async function fetchPost() {
     fetchOutput.textContent = "Loading...";
-    fetch('https://jsonplaceholder.typicode.com/posts/1')
-        .then(response => {
-            if (!response.ok) throw new Error('Network response was not ok');
-            return response.json();
-        })
-        .then(json => {
-            fetchOutput.textContent = json.title + " - " + json.body;
-        })
-        .catch(error => {
-            fetchOutput.textContent = "Error fetching post: " + error.message;
-        });
-});
+    try {
+        const response = await fetch('https://jsonplaceholder.typicode.com/posts/1');
+        if (!response.ok) throw new Error('Network response was not ok');
+        const json = await response.json();
+        fetchOutput.textContent = json.title + " - " + json.body;
+    } catch (error) {
+        fetchOutput.textContent = "Error fetching post: " + error.message;
+    }
+}
+
+fetchPostButton.addEventListener("click", fetchPost);
