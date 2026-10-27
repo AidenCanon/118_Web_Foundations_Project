@@ -60,10 +60,13 @@ function addTask() {
 function createTaskItem(task) {
     const listItem = document.createElement('li');
     listItem.append(document.createTextNode(`${task} `));
+    const taskActions = document.createElement('span');
+    taskActions.className = 'task-actions';
     
     const editButton = document.createElement('button');
     editButton.textContent = 'Edit';
-    listItem.appendChild(editButton);
+    editButton.className = 'task-btn task-btn-edit';
+    taskActions.appendChild(editButton);
     editButton.addEventListener('click', () => {
         const newTask = prompt('Edit task:', task);
         if (newTask) {
@@ -73,9 +76,11 @@ function createTaskItem(task) {
 
     const removeButton = document.createElement('button');
     removeButton.textContent = 'Remove';
+    removeButton.className = 'task-btn task-btn-remove';
     removeButton.addEventListener('click', () => removeTask(task, listItem));
 
-    listItem.appendChild(removeButton);
+    taskActions.appendChild(removeButton);
+    listItem.appendChild(taskActions);
     return listItem;
 }
 // Function to remove a task from the list
@@ -95,12 +100,33 @@ function editTask(oldTask, newTask) {
         tasks[index] = newTask;
         const listItem = list.children[index];
         listItem.firstChild.textContent = `${newTask} `;
-        editButton.addEventListener('click', () => {
-            const newTask = prompt('Edit task:', tasks[index]);
-            if (newTask) {
-                editTask(tasks[index], newTask);
-            }
-        });
     }
 }
 
+
+const loadbtn = document.querySelector('#load');
+const loadoutput = document.querySelector('#task-list');
+loadbtn.addEventListener('click', loadTasks);
+
+
+async function loadTasks() {
+    try {
+        const response = await fetch('TaskTodo.json');
+        const data = await response.json();
+        const tasklist = data.tasklist;
+        tasklist.forEach(task => {
+            if (loadverify(task.title)) {
+                loadoutput.appendChild(createTaskItem(task.title));
+                tasks.push(task.title);
+                countDisplay += 1;
+            }
+        });
+        renderCount();
+    } catch (error) {
+        console.error('Error loading tasks:', error);
+    }
+}
+// check for no duplicate tasks before loading
+function loadverify(task) {
+    return !tasks.includes(task);
+}
