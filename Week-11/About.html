@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>About Us Page</title>
 <link rel="stylesheet" href="style-alt2.css">
+<script src="About.js" defer></script>
 
 </head>
 <body>
@@ -18,7 +19,13 @@
             </ul>
         </nav>
     </header>
-
+    <label for="themeSelect">Select Theme:</label>
+    <select id="themeSelect">
+        <option value="light">Light</option>
+        <option value="calm">Calm</option>
+        <option value="dark">Dark</option>
+    </select>
+    <p id="status">No preference selected yet.</p>
     <main class="page">
         <section class="content">
             <h2>About Our Application</h2>
@@ -32,6 +39,7 @@
         </ul>
     </aside>
     </main>
+    
 </body>
 
 
