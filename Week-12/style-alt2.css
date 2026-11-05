@@ -29,6 +29,25 @@ body {
 
 }
 
+body.dark {
+    --color-primary: #1f2937;
+    --color-primary-dark: #263b4d;
+    --color-accent: #38556c;
+    --color-highlight: #526477;
+    --color-link: #f3f4f6;
+    --color-bg: #111827;
+    --color-surface: #263445;
+    --color-muted: #cbd5e1;
+    --color-text: #e5e7eb;
+    --color-border: #374151;
+    --color-panel: #1f2937;
+    --shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    background:
+        linear-gradient(rgba(17, 24, 39, 0.84), rgba(17, 24, 39, 0.84)),
+        image-set(url("HomePageImage.png") type("image/png")) center / cover fixed;
+    background-color: var(--color-bg);
+}
+
 .site-header {
     background-color: var(--color-primary);
     text-align: center;
@@ -57,6 +76,7 @@ body {
     display: flex;
     gap: 16px;
     justify-content: center;
+    align-items: center;
 }
 
 .site-nav a {
@@ -67,6 +87,21 @@ body {
     color: var(--color-link);
 }
 .site-nav a:hover {
+    background-color: var(--color-highlight);
+}
+.site-nav button {
+    margin: 0;
+    padding: 4px 8px;
+    background: none;
+    border: none;
+    border-radius: 6px;
+    font: inherit;
+    font-weight: 700;
+    line-height: inherit;
+    color: var(--color-link);
+    cursor: pointer;
+}
+.site-nav button:hover {
     background-color: var(--color-highlight);
 }
 
@@ -109,13 +144,19 @@ body {
             url("HomePageImage.webp") center / cover scroll;
         background-color: var(--color-bg);
     }
+    body.dark {
+        background:
+            linear-gradient(rgba(17, 24, 39, 0.84), rgba(17, 24, 39, 0.84)),
+            url("HomePageImage.webp") center / cover scroll;
+        background-color: var(--color-bg);
+    }
     .card-grid {
         grid-template-columns: 1fr;
     }
 }
 button {
     background-color: var(--color-primary);
-    color: var(--color-surface);
+    color: var(--color-link);
     border: none;
     padding: 8px 8px;
     border-radius: var(--radius);
