@@ -1,0 +1,2 @@
+# Task-Todo Page
+This is the main page where everything is going to be done and i did actually copy and paste everything from my index page to the Task-Todo page because i wanted the home page to be more of a home page where you can add to the list but cannot see it unless i decide to add that down the road but for now the plan is to only be able to see the list in this page.
