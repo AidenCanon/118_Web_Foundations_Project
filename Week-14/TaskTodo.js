@@ -11,17 +11,30 @@ function renderCount() {
 }
 
 submit.addEventListener('click', addTask);
+input.addEventListener('keypress', (event) => {
+    if (event.key === 'Enter') {
+        addTask();
+    }
+});
+
 // Function to add a new task to the list
+const feedback = document.querySelector('#task-feedback');
+
 function addTask() {
     const text = input.value.trim();
-    if (!text) return;
+
+    if (!text) {
+        feedback.textContent = 'Enter a task before adding it.';
+        input.focus();
+        return;
+    }
 
     const task = { text };
     tasks.push(task);
     list.appendChild(createTaskItem(task));
     input.value = '';
     renderCount();
-
+    feedback.textContent = `Added "${text}".`;
 }
 // Function to create a task list item with a remove button
 function createTaskItem(task) {
@@ -66,12 +79,14 @@ function removeTask(task, listItem) {
         tasks.splice(index, 1);
         renderCount();
     }
+    feedback.textContent = `Removed "${task.text}".`;
 }
 function editTask(task, newText, listItem) {
     if (tasks.includes(task)) {
         task.text = newText;
         listItem.firstChild.textContent = `${newText} `;
     }
+    feedback.textContent = `Edited to "${newText}".`;
 }
 
 
