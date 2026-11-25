@@ -11,13 +11,13 @@ function renderCount() {
 }
 
 submit.addEventListener('click', addTask);
+
 input.addEventListener('keypress', (event) => {
     if (event.key === 'Enter') {
         addTask();
     }
 });
 
-// Function to add a new task to the list
 const feedback = document.querySelector('#task-feedback');
 
 function addTask() {
@@ -29,17 +29,42 @@ function addTask() {
         return;
     }
 
-    const task = { text };
+    // New tasks start unchecked; the checkbox updates this value when clicked.
+    const task = { text, completed: false };
     tasks.push(task);
+
     list.appendChild(createTaskItem(task));
+
     input.value = '';
     renderCount();
     feedback.textContent = `Added "${text}".`;
 }
-// Function to create a task list item with a remove button
+
 function createTaskItem(task) {
     const listItem = document.createElement('li');
-    listItem.append(document.createTextNode(`${task.text} `));
+
+    // A native checkbox shows a check mark when selected.
+    const check = document.createElement('input');
+    check.type = 'checkbox';
+    check.className = 'task-checkbox';
+
+    // Show the saved completion state if this task is already complete.
+    check.checked = task.completed === true;
+
+    check.setAttribute('aria-label', 'Mark task complete');
+
+    // Save the new completion state whenever the checkbox is clicked.
+    check.addEventListener('change', () => {
+        task.completed = check.checked;
+    });
+    listItem.appendChild(check);
+
+    // Keep the text separate so editing it won't replace the checkbox.
+    const taskText = document.createElement('span');
+    taskText.className = 'task-text';
+    taskText.textContent = `${task.text} `;
+    listItem.appendChild(taskText);
+
     const taskActions = document.createElement('span');
     taskActions.className = 'task-actions';
     
@@ -53,6 +78,7 @@ function createTaskItem(task) {
 
         const newTaskTrimmed = newTask.trim();
         if (!newTaskTrimmed) return;
+
         if (newTaskTrimmed.length > input.maxLength) {
             alert(`Tasks must be ${input.maxLength} characters or fewer.`);
             return;
@@ -70,7 +96,7 @@ function createTaskItem(task) {
     listItem.appendChild(taskActions);
     return listItem;
 }
-// Function to remove a task from the list
+
 function removeTask(task, listItem) {
     list.removeChild(listItem);
 
@@ -81,28 +107,29 @@ function removeTask(task, listItem) {
     }
     feedback.textContent = `Removed "${task.text}".`;
 }
+
 function editTask(task, newText, listItem) {
     if (tasks.includes(task)) {
         task.text = newText;
-        listItem.firstChild.textContent = `${newText} `;
+        listItem.querySelector('.task-text').textContent = `${newText} `;
     }
     feedback.textContent = `Edited to "${newText}".`;
 }
 
-
 const loadbtn = document.querySelector('#load');
 const loadoutput = document.querySelector('#task-list');
 loadbtn.addEventListener('click', loadTasks);
-
 
 async function loadTasks() {
     try {
         const response = await fetch('TaskTodo.json');
         const data = await response.json();
         const tasklist = data.tasklist;
+
         tasklist.forEach(task => {
             if (loadverify(task.title)) {
-                const loadedTask = { text: task.title };
+                // Loaded tasks also start unchecked.
+                const loadedTask = { text: task.title, completed: false };
                 loadoutput.appendChild(createTaskItem(loadedTask));
                 tasks.push(loadedTask);
             }
@@ -112,7 +139,7 @@ async function loadTasks() {
         console.error('Error loading tasks:', error);
     }
 }
-// check for no duplicate tasks before loading
+
 function loadverify(task) {
     return !tasks.some(existingTask => existingTask.text === task);
 }
